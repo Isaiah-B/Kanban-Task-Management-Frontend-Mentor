@@ -1,30 +1,31 @@
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { expressMiddleware } from '@apollo/server/express4';
+import { GraphQLError } from 'graphql';
 import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { readFileSync } from 'fs';
 
 import User from './models/user-model.js';
+import typeDefs from './schema.js';
 import resolvers from './resolvers.js';
-import { GraphQLError } from 'graphql';
 
 dotenv.config();
 
 const DB_URI = process.env.DATABASE_URI || '';
 const PORT = process.env.PORT || 8000;
+const JWT_SECRET = process.env.JWT_SECRET || '';
 
 interface Context {
   currentUser: unknown,
 }
 
-const getUser = async (auth: string) => {
+const getUser = async (auth: string | undefined) => {
   if (auth && auth.toLowerCase().startsWith('bearer ')) {
-      const currentUser = jwt.verify(auth.substring(7), process.env.JWT_SECRET, async (err, res) => {
+      const currentUser = jwt.verify(auth.substring(7), JWT_SECRET, async (err, res) => {
         if (err) return new GraphQLError('Invalid auth token');
         else {
           const decoded = res as jwt.JwtPayload;
@@ -57,8 +58,6 @@ async function startApolloServer() {
     const app = express();
     const httpServer = http.createServer(app);
     
-    const typeDefs = readFileSync('./src/schema.graphql', { encoding: 'utf-8'});
-    
     const server = new ApolloServer<Context>({
       typeDefs,
       resolvers,
@@ -73,9 +72,8 @@ async function startApolloServer() {
       express.json(),
       expressMiddleware(server, {
         context: async ({ req }) => {
-          const auth = req ? req.headers.authorization : null;
+          const auth = req ? req.headers.authorization : undefined;
           const currentUser = await getUser(auth);
-          console.log(currentUser);
           return { currentUser };
         }
       }),
@@ -88,4 +86,4 @@ async function startApolloServer() {
   }
 }
 
-await startApolloServer();
+startApolloServer();

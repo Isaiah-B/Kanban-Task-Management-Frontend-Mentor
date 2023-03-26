@@ -8,7 +8,7 @@ import {
 
 const createApolloClient = () => {
   const httpLink = createHttpLink({
-    uri: 'http://localhost:8000/graphql',
+    uri: process.env.REACT_APP_API_URL,
   });
 
   const authLink = setContext((_, { headers }) => {

@@ -57,14 +57,6 @@ const resolvers = {
   },
 
   Mutation: {
-    /**
-     * Creates a new board for the current user
-     * @param args - Object containing the name for a new board and and optional
-     * array of names for the board's columns
-     * @param {Object} context - Object containing global context for the API resolvers
-     * @param context.currentUser - Current authenticated user
-     * @returns {Object} Updated currentUser
-     */
     addBoard: async (_: any, args: any, { currentUser }) => {
       try {
         const newBoard = new Board({ name: args.name });
@@ -314,10 +306,6 @@ const resolvers = {
       }
     },
 
-    /**
-     * @param args - Credentials used to create a new user
-     * @returns Newly created user
-     */
     signup: async (_: any, args: any, { currentUser }) => {
       if (!currentUser.role && currentUser.role !== 'guest') return;
 
@@ -342,10 +330,6 @@ const resolvers = {
       }
     },
 
-    /** 
-     * @param args - Credentials used to authenticate existing user 
-     * @returns {Object} - Token used for authenticating user
-     */
     login: async (_: any, args: any, { currentUser }) => {
       if (!currentUser.role && currentUser.role !== 'guest') return;
 

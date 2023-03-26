@@ -1,0 +1,120 @@
+const typeDefs = `#graphql
+  type User {
+    _id: ID!
+    username: String
+    boards: [Board!]!
+  }
+
+  type LoginResponse {
+    id: ID!
+    token: String!
+  }
+
+  type Board {
+    id: ID!
+    name: String!
+    columns: [Column!]!
+  }
+
+  type Column {
+    id: ID!
+    board: ID!
+    name: String!
+    tasks: [Task!]!
+  }
+
+  type Task {
+    id: ID!
+    title: String!
+    description: String!
+    subtasks: [Subtask]!
+    status: String!
+  }
+
+  type Subtask {
+    id: ID!
+    title: String!
+    isCompleted: Boolean!
+  }
+
+  input SubtaskInput {
+    id: ID
+    title: String!
+    isCompleted: Boolean!
+  }
+
+  type Query {
+    me: User
+    allBoards: [Board!]!
+    getBoard(id: ID!): Board
+    getUserBoards: User
+  }
+
+  type Mutation {
+    addBoard(
+      name: String!
+      columns: [String]!
+    ): Board
+
+    editBoard(
+      boardId: ID!
+      boardName: String!
+      columnNames: [String]!
+    ): Board
+
+    deleteBoard(
+      boardId: ID!
+    ): Board
+    
+    addColumns(
+      boardId: ID!
+      columnNames: [String!]!
+    ): Column
+
+    removeColumns(
+      boardId: ID!
+      columnIds: [ID!]!
+    ): Board
+
+    addTask(
+      columnId: ID!
+      title: String!
+      description: String!
+      subtasks: [String]!
+    ): Task
+
+    deleteTask(
+      taskId: ID!
+    ): Task
+
+    editTask(
+      taskId: ID!
+      title: String!
+      description: String!
+      subtasks: [SubtaskInput]!
+      originalStatus: ID!
+      status: ID!
+    ): Task
+
+    moveTask(
+      taskId: ID!
+      sourceColumnId: ID!
+      destinationColumnId: ID!
+      destinationColumnIndex: Int!
+    ): Task
+
+    signup(
+      username: String!
+      password: String!
+      passwordConfirm: String!
+    ): LoginResponse
+
+    login(
+      username: String!
+      password: String!
+    ): LoginResponse
+
+  }
+`;
+
+export default typeDefs;

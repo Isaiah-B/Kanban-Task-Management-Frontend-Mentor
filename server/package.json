@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node ./dist/index.js",
+    "start": "npm run build",
     "dev": "nodemon",
     "importData": "node --loader ts-node/esm ./src/dev/import-delete-data.ts --import",
     "deleteData": "node --loader ts-node/esm ./src/dev/import-delete-data.ts --delete"

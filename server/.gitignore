@@ -5,3 +5,5 @@ dist
 dev
 
 nodemon.json
+.space
+Spacefile
