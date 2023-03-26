@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import Dropdown from '../../dropdown/dropdown.component';
 import OptionsMenu from '../../options-menu/options-menu.component';
@@ -31,7 +31,7 @@ import {
 } from '../modals.styles';
 
 function TaskDetails() {
-  const [currentBoard, setCurrentBoard] = useRecoilState(CurrentBoardState);
+  const currentBoard = useRecoilValue(CurrentBoardState);
   const [modalState, setModalState] = useRecoilState(ModalState);
 
   const currentTask = modalState.currentItem as ITask;
