@@ -9,9 +9,9 @@ import http from 'http';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 
-import User from './models/user-model.js';
-import typeDefs from './schema.js';
-import resolvers from './resolvers.js';
+import User from './models/user-model';
+import typeDefs from './schema';
+import resolvers from './resolvers';
 
 dotenv.config();
 

@@ -16,9 +16,9 @@ function App() {
   const setModalState = useSetRecoilState(ModalState);
   const theme = useRecoilValue(ThemeState) === 'light' ? light : dark;
 
-  const { data: me, loading } = useQuery(ME, {
+  useQuery(ME, {
     onCompleted: ((data) => setCurrentUser({ ...currentUser, id: data.me._id })),
-    onError: ((error) => {
+    onError: (() => {
       setModalState((state) => ({ ...state, isOpen: true, modalType: MODAL_TYPES.login }));
     }),
   });

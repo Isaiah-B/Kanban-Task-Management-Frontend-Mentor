@@ -1,6 +1,6 @@
 import { GraphQLError } from 'graphql';
 import mongoose from 'mongoose';
-import User from '../models/user-model.js';
+import User from '../models/user-model';
 
 export async function checkUserExists(userId: string) {
   try {

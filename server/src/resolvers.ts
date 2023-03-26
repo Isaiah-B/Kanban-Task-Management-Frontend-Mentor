@@ -3,13 +3,13 @@ import { GraphQLError } from 'graphql';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import Board from './models/board-model.js';
-import Column from './models/column-model.js';
-import Task, { ISubtask } from './models/task-model.js';
-import User from './models/user-model.js';
+import Board from './models/board-model';
+import Column from './models/column-model';
+import Task, { ISubtask } from './models/task-model';
+import User from './models/user-model';
 
-import { checkUserExists, checkUserHasBoard } from './utils/index.js';
-import { handleErrors } from './utils/errors.js';
+import { checkUserExists, checkUserHasBoard } from './utils/index';
+import { handleErrors } from './utils/errors';
 
 const resolvers = {
   Query: {

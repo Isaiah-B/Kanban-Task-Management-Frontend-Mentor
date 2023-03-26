@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Task from './task-model.js';
+import Task from './task-model';
 
 export interface IColumn {
   name: string,

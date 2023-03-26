@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Column from './column-model.js';
+import Column from './column-model';
 
 interface IBoard {
   name: string,
