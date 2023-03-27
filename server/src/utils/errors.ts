@@ -29,7 +29,5 @@ function sendErrorDev(error: any) {
 
 // Normalize all errors types to GraphQLError
 export function handleErrors(error: unknown) {
-  if (process.env.NODE_ENV === 'development') {
-    return sendErrorDev(error);
-  }
+  return sendErrorDev(error);
 }
