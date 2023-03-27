@@ -30,9 +30,8 @@ function App() {
       {
         loading
           ? <Loader />
-          : null
+          : <BoardContainer />
       }
-      <BoardContainer />
     </ThemeProvider>
   );
 }
