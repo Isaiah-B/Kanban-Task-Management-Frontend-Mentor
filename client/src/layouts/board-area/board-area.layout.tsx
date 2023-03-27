@@ -182,6 +182,7 @@ function BoardArea() {
                   width="fit-content"
                   buttonStyle={BUTTON_TYPES.primaryL}
                   onClick={() => openModal(MODAL_TYPES.addColumn, true)}
+                  aria-label="Show Sidebar"
                 >
                   + Add New Column
                 </Button>

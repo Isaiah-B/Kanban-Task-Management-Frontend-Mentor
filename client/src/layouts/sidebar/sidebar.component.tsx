@@ -83,10 +83,12 @@ function Sidebar() {
                 </li>
               ))
             }
-            <AddBoardButton onClick={onClickAddBoard}>
-              <BoardIcon />
-              <h3>+ Create New Board</h3>
-            </AddBoardButton>
+            <li>
+              <AddBoardButton onClick={onClickAddBoard}>
+                <BoardIcon />
+                <h3>+ Create New Board</h3>
+              </AddBoardButton>
+            </li>
           </BoardsList>
         </BoardsListWrapper>
 
@@ -97,7 +99,7 @@ function Sidebar() {
               onClick={toggleTheme}
             >
               <SunIcon />
-              <SwitchButton />
+              <SwitchButton aria-label="Switch theme" />
               <MoonIcon />
             </ThemeSwitchContainer>
           </ThemeSwitchPadding>

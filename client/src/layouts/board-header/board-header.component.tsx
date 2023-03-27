@@ -118,6 +118,7 @@ function BoardHeader() {
           <MenuButton
             onClick={() => setOptionsOpen(!optionsOpen)}
             disabled={!currentUser.id}
+            aria-label="Board options"
           >
             <VerticalEllipsis />
           </MenuButton>

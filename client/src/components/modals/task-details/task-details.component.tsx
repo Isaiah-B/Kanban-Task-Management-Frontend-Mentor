@@ -180,7 +180,10 @@ function TaskDetails() {
           <h2>{currentTask.title}</h2>
 
           <TaskOptionsContainer>
-            <TaskDetailsOptionsButton onClick={() => setOptionsOpen(!optionsOpen)}>
+            <TaskDetailsOptionsButton
+              onClick={() => setOptionsOpen(!optionsOpen)}
+              aria-label="Task options"
+            >
               <VerticalEllipsisIcon />
             </TaskDetailsOptionsButton>
 
