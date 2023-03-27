@@ -10,18 +10,21 @@ import { MODAL_TYPES } from './types';
 import { ModalState, ThemeState, UserState } from './recoilStore';
 
 import { GlobalStyles } from './index.styles';
+import Loader from './components/loader/loader.component';
 
 function App() {
   const [currentUser, setCurrentUser] = useRecoilState(UserState);
   const setModalState = useSetRecoilState(ModalState);
   const theme = useRecoilValue(ThemeState) === 'light' ? light : dark;
 
-  useQuery(ME, {
+  const { loading } = useQuery(ME, {
     onCompleted: ((data) => setCurrentUser({ ...currentUser, id: data.me._id })),
     onError: (() => {
       setModalState((state) => ({ ...state, isOpen: true, modalType: MODAL_TYPES.login }));
     }),
   });
+
+  if (loading) return <Loader />;
 
   return (
     <ThemeProvider theme={theme}>
