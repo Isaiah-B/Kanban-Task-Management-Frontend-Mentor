@@ -32,6 +32,7 @@ Users should be able to:
 - NodeJS
 - Express
 - CSS Styled Components
+- [React Spinners](https://www.davidhu.io/react-spinners/)
 - Flexbox
 - Desktop-first workflow
 
