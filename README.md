@@ -20,8 +20,8 @@ Users should be able to:
 
 ### Links
 
-- [Solution]()
-- [Live Site]()
+- [Solution](https://www.frontendmentor.io/solutions/responsive-kanban-task-management-app-using-react-and-graphql-WTFXxNcInc)
+- [Live Site](https://kanban-fm.netlify.app/)
 
 ### Built with
 
